@@ -6,6 +6,14 @@ const Country = require('./country.js');
 const Library = require('./library.js');
 const Utils = require('./utils.js');
 
+console.log([
+  [1],
+  [2],
+  [3],
+  [4],
+  [5]
+])
+return;
 
 var myAlbum = new Album('album1', 2000);
 myAlbum.name;
@@ -45,7 +53,7 @@ var myMusic = [
 ];
 
 var library = new Library(myMusic);
-console.log(library.getTracks());
+console.log(library.getArtistAlbumTracks());
 
 function getArtistNames(myMusic) {
   return myMusic.map(function(artist) {

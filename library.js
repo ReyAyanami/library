@@ -1,17 +1,26 @@
-class Library {
-  constructor(artistList) {
-    this.artistList = artistList;
+const Collection = require('./collection.js');
+
+class Library extends Collection {
+  constructor(artistList = [], title) {
+    super(title, artistList);
   }
-  getAlbums() {
-    return this.artistList.map(function(artist) {
-      return artist.albums;
-    });
+  getArtists() {
+    return this.getItems();
   }
-  getTracks() {
-    return this.artistList.map(function(artist) {
-      return artist.getTracks();
-    });
+  addArtist(artist) {
+    return this.addItem(artist);
   }
+  removeArtist(artist) {
+    return this.removeItem(artist);
+  }
+  getArtistAlbums() {
+    return this.mapBy('albumList');
+  }
+
+  getArtistAlbumTracks() {
+    return this.mapBy('albumTrackList');
+  }
+
 }
 
 module.exports = Library;

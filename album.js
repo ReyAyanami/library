@@ -1,27 +1,31 @@
 const Utils = require('./utils.js');
+const Collection = require('./collection.js');
 
-class Album {
-  constructor(title, year, tracks = []) {
-    this.title = title;
+class Album extends Collection {
+  constructor(title, year, tracks) {
+    super(title, tracks);
     this.year = year;
-    this.tracks = tracks;
   }
   get name() {
-    return this.title;
+    return this.getTitle();
   }
   set name(name) {
-    this.title = name;
+    this.setTitle(name);
   }
-  setTitle(title) {
-    this.title = title;
-    return this;
+  get trackList() {
+    return this.getTracks();
   }
   getTracks() {
-    return Utils.mapBy(this.tracks, 'title');
+    return this.getItems();
   }
   addTrack(track) {
-    this.tracks.push(track);
-    return this;
+    return this.addItem(track);
+  }
+  removeTrack(track) {
+    return this.removeItem(track);
+  }
+  getTrackNames() {
+    return this.mapBy('title');
   }
 }
 

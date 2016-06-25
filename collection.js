@@ -1,14 +1,15 @@
 const Item = require('./item.js');
 
 class Collection extends Item {
-  constructor(title) {
+  constructor(title, collection = []) {
     super(title);
-    this.collection = [];
+    this.collection = collection;
   }
   getItems() {
     return this.collection;
   }
   addItem(item) {
+    this.removeItem(item);
     this.collection.push(item);
     return this;
   }
@@ -16,6 +17,7 @@ class Collection extends Item {
     this.collection = this.collection.filter(function(elm) {
       return elm !== item;
     });
+    return this;
   }
   mapBy(prop) {
     return this.collection.map(function(elem) {
@@ -33,3 +35,5 @@ class Collection extends Item {
     });
   }
 }
+
+module.exports = Collection;
